@@ -6,6 +6,17 @@
 
 require('./bootstrap');
 
+window.Echo.channel('notifications')
+          .listen('UserSessionChange', (e) => {
+                    const notificationElement = document.getElementById('notification');
+                    notificationElement.innerText = e.message;
+                    notificationElement.classList.remove('invisible');
+                    notificationElement.classList.remove('alert-success');
+                    notificationElement.classList.remove('alert-danger');
+
+                    notificationElement.classList.add('alert-' + e.type);
+          });
+
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application
