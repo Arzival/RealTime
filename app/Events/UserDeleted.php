@@ -11,10 +11,10 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-// se implementa el ShouldBroadcast
+// se implementa el ShouldBroadcast y se eleminia el SerializesModels
 class UserDeleted implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithSockets;
     // declaramos las variables que sean necesarias
     public $user;
 
