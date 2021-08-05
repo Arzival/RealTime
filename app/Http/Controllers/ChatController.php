@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Events\MessageSend;
 use Illuminate\Http\Request;
+
 
 class ChatController extends Controller
 {
@@ -35,7 +37,13 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $rules = [
+            'message' => 'required',
+        ];
+
+        $request->validate($rules);
+        broadcast(new MessageSend($request->user(),$request['message']));
+        return response()->json('Message broadcast');
     }
 
     /**
